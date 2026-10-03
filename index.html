@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101916">
+  <title>Sober — Your recovery companion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Sober home">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span>Sober<span class="brand-period">.</span></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="navigation" aria-label="Main navigation">
+        <button class="nav-link active" data-view="overview"><span class="nav-icon">◫</span> Overview</button>
+        <button class="nav-link" data-view="journal"><span class="nav-icon">▤</span> My journal</button>
+        <button class="nav-link" data-view="progress"><span class="nav-icon">▥</span> Progress</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="privacy-card">
+          <span class="privacy-icon">◇</span>
+          <strong>Your space, your privacy.</strong>
+          <p>Your entries stay in this browser on this device.</p>
+        </div>
+        <button class="nav-link" id="theme-toggle"><span class="nav-icon" id="theme-icon">◐</span> Toggle appearance</button>
+        <div class="profile">
+          <div class="avatar">S</div>
+          <div><strong>Your journey</strong><small>One day at a time</small></div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark"><span></span><span></span><span></span></span> Sober<span class="brand-period">.</span></div>
+        <div class="breadcrumb"><span>Workspace</span><span class="crumb-slash">/</span><strong id="page-label">Overview</strong></div>
+        <div class="topbar-right"><span class="local-badge"><span class="status-dot"></span> Private by default</span><button class="button button-quiet" id="login-btn">Log in</button><button class="button button-primary" id="signup-btn">Sign up</button><button class="button button-quiet" id="account-btn" hidden></button><button class="icon-button" id="export-button" title="Export your data" aria-label="Export your data">⇩</button></div>
+      </header>
+
+      <section class="view active" id="overview-view">
+        <div class="welcome-row">
+          <div><div class="eyebrow"><span class="eyebrow-line"></span> YOUR RECOVERY SPACE</div><h1>Keep showing up<span class="heading-dot">.</span></h1><p class="subheading">Progress isn't about perfection. It's about what you do next.</p></div>
+          <button class="button button-quiet" id="edit-date-button">⚙ <span>Edit start date</span></button>
+        </div>
+
+        <section class="hero-card">
+          <div class="hero-content">
+            <div class="hero-overline"><span class="hero-spark">✳</span> YOUR SOBRIETY JOURNEY</div>
+            <div class="streak-number"><span id="days-count">0</span><span class="streak-unit">days in a row</span></div>
+            <p class="hero-copy">Every moment you choose yourself matters.</p>
+            <div class="hero-meta"><span class="meta-icon">◷</span><span id="start-date-label">Set your start date to begin</span></div>
+            <div class="hero-split"><span><b id="total-days">0</b> total sober days, all time</span><button class="button button-ghost" id="slip-button">Log a slip-up</button></div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+            <div class="sun"></div><div class="hill hill-back"></div><div class="hill hill-front"></div>
+            <div class="art-star star-one">✦</div><div class="art-star star-two">✧</div><div class="art-star star-three">·</div>
+          </div>
+          <div class="hero-bottom"><span><span class="live-dot"></span> Your journey, at your pace</span><span class="hero-bottom-right">ONE DAY AT A TIME <span>↗</span></span></div>
+        </section>
+
+        <div class="section-heading"><div><h2>Your milestones</h2><p>Small steps are still steps forward.</p></div><button class="text-button" data-open="progress">View progress <span>↗</span></button></div>
+        <div class="milestone-grid" id="milestone-grid"></div>
+
+        <div class="dashboard-grid">
+          <section class="panel checkin-panel">
+            <div class="panel-heading"><div><h2>Daily check-in</h2><p>Take a moment to check in with yourself.</p></div><span class="panel-date" id="today-label"></span></div>
+            <div class="mood-options" id="mood-options">
+              <button class="mood-option" data-mood="Great"><span class="mood-face">☺</span><span>Great</span></button>
+              <button class="mood-option" data-mood="Okay"><span class="mood-face">◡</span><span>Okay</span></button>
+              <button class="mood-option" data-mood="Low"><span class="mood-face">⌢</span><span>Low</span></button>
+              <button class="mood-option" data-mood="Struggling"><span class="mood-face">♡</span><span>Struggling</span></button>
+            </div>
+            <div class="metric-row"><label class="metric">Sleep quality<select id="checkin-sleep"><option value="">Not logged</option><option value="1">1 – Poor</option><option value="2">2 – Light</option><option value="3">3 – Fair</option><option value="4">4 – Good</option><option value="5">5 – Great</option></select></label><label class="metric">Stress level<select id="checkin-stress"><option value="">Not logged</option><option value="1">1 – Calm</option><option value="2">2 – Mild</option><option value="3">3 – Moderate</option><option value="4">4 – High</option><option value="5">5 – Overwhelming</option></select></label></div>
+            <div class="field-label">Triggers today <span>OPTIONAL</span></div><div class="chips" id="trigger-chips"></div>
+            <label class="field-label" for="checkin-note">Anything on your mind? <span>OPTIONAL</span></label>
+            <textarea id="checkin-note" rows="3" placeholder="A thought, a win, or something you're working through..."></textarea>
+            <div class="panel-footer"><span class="save-hint" id="checkin-status">Only you can see this.</span><button class="button button-primary" id="save-checkin">Save check-in <span>↗</span></button></div>
+          </section>
+          <section class="panel reminder-panel">
+            <div class="reminder-symbol">✳</div><div class="eyebrow">A NOTE TO YOURSELF</div>
+            <blockquote id="daily-quote">You don't have to see the whole staircase. Just take the first step.</blockquote>
+            <div class="quote-line"></div><p class="reminder-caption">Pause. Breathe. Begin again.</p>
+            <button class="text-button quote-refresh" id="new-quote">A little perspective <span>↻</span></button>
+          </section>
+        </div>
+
+        <section class="panel support-panel" id="support-card" hidden><strong>You don't have to carry this alone.</strong><p>Reach out to someone you trust, a support group, or a local health service. If you feel unsafe, contact your local emergency number. One hard day does not undo your progress.</p></section>
+        <div class="section-heading recent-heading"><div><h2>Recent reflections</h2><p>Your thoughts, your progress.</p></div><button class="text-button" data-open="journal">Open journal <span>↗</span></button></div>
+        <section class="panel recent-panel" id="recent-entries"><div class="empty-state"><span class="empty-icon">▤</span><strong>Your reflections will appear here</strong><p>Save a daily check-in or write a journal entry to get started.</p></div></section>
+        <footer class="app-footer">Made for progress, not perfection. <span>Take it one day at a time.</span></footer>
+      </section>
+
+      <section class="view" id="journal-view">
+        <div class="welcome-row"><div><div class="eyebrow"><span class="eyebrow-line"></span> PERSONAL REFLECTIONS</div><h1>Your journal<span class="heading-dot">.</span></h1><p class="subheading">A place to be honest with yourself, without judgment.</p></div></div>
+        <section class="panel journal-compose">
+          <div class="panel-heading"><div><h2>Write a reflection</h2><p>Capture what's on your mind today.</p></div><span class="panel-date" id="journal-date"></span></div>
+          <label class="field-label" for="journal-title">TITLE</label><input id="journal-title" type="text" maxlength="80" placeholder="Give this entry a name (optional)">
+          <label class="field-label" for="journal-body">YOUR REFLECTION</label><textarea id="journal-body" rows="7" placeholder="Start wherever you are..."></textarea>
+          <div class="panel-footer"><span class="save-hint">Your journal is saved locally in this browser.</span><button class="button button-primary" id="save-journal">Save entry <span>↗</span></button></div>
+        </section>
+        <div class="section-heading"><div><h2>Past entries</h2><p>Look back with compassion.</p></div><span class="entry-count" id="entry-count">0 entries</span></div>
+        <div class="journal-list" id="journal-list"></div>
+      </section>
+
+      <section class="view" id="progress-view">
+        <div class="welcome-row"><div><div class="eyebrow"><span class="eyebrow-line"></span> YOUR PERSONAL TIMELINE</div><h1>Progress<span class="heading-dot">.</span></h1><p class="subheading">Notice how far you've come, at your own pace.</p></div><button class="button button-quiet" id="progress-edit-date">⚙ <span>Start date</span></button></div>
+        <div class="progress-stats" id="progress-stats"></div>
+        <section class="panel chart-panel"><div class="panel-heading"><div><h2>Daily check-ins</h2><p>Your logged moods over the last 7 days.</p></div><span class="chart-key"><i></i> Check-in</span></div><div class="chart" id="mood-chart"></div></section>
+        <section class="panel chart-panel"><div class="panel-heading"><div><h2>Trends</h2><p>Mood, sleep and stress over the last 14 days.</p></div></div><div id="trend-chart"></div><div class="insights" id="insights"></div></section>
+        <section class="panel chart-panel"><div class="panel-heading"><div><h2>Slip-up log</h2><p>A lapse is part of the story, not the end of it.</p></div><button class="button button-quiet" id="slip-button-2">Log a slip-up</button></div><div id="slip-list"></div></section>
+        <section class="panel chart-panel"><div class="panel-heading"><div><h2>Your data belongs to you</h2><p>Download everything you have logged, any time.</p></div></div><div class="export-row"><button class="button button-quiet" data-export="md">Markdown</button><button class="button button-quiet" data-export="csv">CSV</button><button class="button button-quiet" data-export="json">JSON backup</button></div></section>
+        <div class="section-heading"><div><h2>Milestone timeline</h2><p>Every milestone is worth recognizing.</p></div></div>
+        <section class="panel timeline-panel" id="timeline-list"></section>
+        <section class="panel reflection-prompt"><span class="prompt-icon">✳</span><div><strong>Progress is more than a number.</strong><p>Each honest check-in, each difficult moment you navigate, and each time you ask for support can be part of your growth.</p></div></section>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="date-dialog" class="modal">
+    <form method="dialog" id="date-form">
+      <button class="modal-close" value="cancel" aria-label="Close">×</button>
+      <div class="modal-symbol">◷</div><h2>Set your start date</h2><p>Choose the date you want to use as the beginning of your current sobriety journey. You can update it at any time.</p>
+      <label class="field-label" for="sobriety-date">START DATE</label><input id="sobriety-date" type="date" required>
+      <div class="modal-actions"><button class="button button-quiet" value="cancel">Cancel</button><button class="button button-primary" id="confirm-date" value="save">Save date</button></div>
+    </form>
+  </dialog>
+  <nav class="bottom-nav" aria-label="Main navigation">
+    <button class="nav-link active" data-view="overview"><span class="nav-icon">◫</span>Overview</button>
+    <button class="nav-link" data-view="journal"><span class="nav-icon">▤</span>Journal</button>
+    <button class="nav-link" data-view="progress"><span class="nav-icon">▥</span>Progress</button>
+  </nav>
+  <dialog id="reset-dialog" class="modal">
+    <form id="reset-form">
+      <h2>Choose a new password</h2><p>Your encryption passphrase does not change.</p>
+      <label class="field-label" for="reset-password">NEW PASSWORD</label><input id="reset-password" type="password" minlength="6" autocomplete="new-password" required>
+      <div class="form-message" id="reset-message" role="alert"></div>
+      <div class="modal-actions"><button class="button button-primary">Save password</button></div>
+    </form>
+  </dialog>
+  <dialog id="slip-dialog" class="modal">
+    <form id="slip-form">
+      <button type="button" class="modal-close" data-close="slip-dialog" aria-label="Close">×</button>
+      <h2>Log a slip-up</h2><p>Thank you for being honest. Your total sober days and everything you have logged stay exactly as they are. Your consecutive count restarts from the date you choose.</p>
+      <label class="field-label" for="slip-date">DATE</label><input id="slip-date" type="date" required>
+      <label class="field-label" for="slip-note" style="margin-top:14px">WHAT HAPPENED? <span>OPTIONAL</span></label><textarea id="slip-note" rows="3" placeholder="What was going on before, and what could help next time?"></textarea>
+      <div class="modal-actions"><button type="button" class="button button-quiet" data-close="slip-dialog">Cancel</button><button class="button button-primary">Save slip-up</button></div>
+    </form>
+  </dialog>
+  <dialog id="auth-dialog" class="modal">
+    <button type="button" class="modal-close" data-close="auth-dialog" aria-label="Close">×</button>
+    <form id="auth-form">
+      <div class="tabs"><button type="button" id="tab-login" class="tab active">Log in</button><button type="button" id="tab-signup" class="tab">Sign up</button></div>
+      <p id="auth-intro">An account is optional. Without one, everything stays on this device. With one, an encrypted backup is saved to the cloud.</p>
+      <label class="field-label" for="auth-email">EMAIL</label><input id="auth-email" type="email" autocomplete="email" required>
+      <label class="field-label" for="auth-password" style="margin-top:14px">PASSWORD</label><input id="auth-password" type="password" minlength="6" autocomplete="current-password" required>
+      <label class="field-label" for="auth-passphrase" style="margin-top:14px">ENCRYPTION PASSPHRASE</label><input id="auth-passphrase" type="password" minlength="8" autocomplete="off" required>
+      <small class="hint">Must differ from your password. It locks your backup in your browser, and nobody can recover it if you forget it.</small>
+      <div class="form-message" id="auth-message" role="alert"></div>
+      <button type="button" class="text-button" id="forgot-btn">Forgot your password?</button>
+      <div class="modal-actions"><button class="button button-primary" id="auth-submit">Log in</button></div>
+    </form>
+    <div id="account-view" hidden>
+      <h2 id="account-email"></h2><p id="account-status"></p>
+      <div id="unlock-box"><label class="field-label" for="unlock-passphrase">ENCRYPTION PASSPHRASE</label><input id="unlock-passphrase" type="password" autocomplete="off"></div>
+      <div class="form-message" id="unlock-message" role="alert"></div>
+      <div class="modal-actions"><button type="button" class="button button-quiet" id="logout-btn">Log out</button><button type="button" class="button button-primary" id="sync-btn">Unlock and sync</button></div>
+    </div>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+  <script src="extras.js"></script>
+</body>
+</html>
