@@ -1,0 +1,8 @@
+   sober-backup-*
+   sober-export-*
+   .DS_Store
+   Thumbs.db
+   .vscode/
+   .idea/
+   .env
+   *.pem
